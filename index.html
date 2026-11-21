@@ -1,0 +1,13 @@
+{% extends "base.html" %}{% block title %}EduLearn | Learn anywhere{% endblock %}
+{% block content %}
+<section class="hero">
+ <div><span class="eyebrow">YOUR LEARNING JOURNEY STARTS HERE</span><h1>Learn anything.<br><span>Grow everywhere.</span></h1>
+ <p>Explore beginner-friendly courses, download notes, watch lessons and test your knowledge with quizzes.</p>
+ <div class="actions"><a class="btn primary" href="{{ url_for('register') }}">Create free account</a><a class="btn light" href="{{ url_for('login') }}">Student login</a></div>
+ </div><div class="hero-art"><div class="art-card"><div class="art-icon">✦</div><h3>Small steps.<br>Big progress.</h3><p>Learn at your own pace.</p><div class="progress"><i></i></div><small>Keep learning · Keep growing</small></div><div class="bubble bubble-one">📚</div><div class="bubble bubble-two">🚀</div></div>
+</section>
+<div class="section-heading"><div><span class="eyebrow">START EXPLORING</span><h2>Popular courses</h2></div><a href="{{ url_for('courses') if current_user else url_for('register') }}">View all →</a></div>
+<div class="grid">
+{% for course in courses %}<article class="course-card"><div class="course-icon">{{ loop.index | select_icon }}</div><span class="tag">{{ course.category }}</span><h3>{{ course.title }}</h3><p>{{ course.description }}</p>{% if current_user %}<a class="text-link" href="{{ url_for('course_detail', course_id=course.id) }}">Explore course →</a>{% else %}<a class="text-link" href="{{ url_for('register') }}">Join to explore →</a>{% endif %}</article>{% endfor %}
+</div>
+{% endblock %}
