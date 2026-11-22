@@ -28,7 +28,7 @@ def get_db():
     return conn
 
 def init_db():
-    (BASE_DIR / "database").mkdir(exist_ok=True)
+    (BASE_DIR / "database").mkdir(parents=True, exist_ok=True)
     UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
     VIDEO_DIR.mkdir(parents=True, exist_ok=True)
     with get_db() as db:
