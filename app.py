@@ -366,8 +366,9 @@ def too_large(_error):
     flash("The uploaded file is too large. Maximum upload size is 1 GB.", "danger")
     return redirect(url_for("admin"))
 
+init_db()
+
 if __name__ == "__main__":
-    init_db()
     app.run(
         host="0.0.0.0",
         port=5000,
